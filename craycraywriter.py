@@ -12,6 +12,12 @@ class CrayCrayWriter(object):
 
         self.characters = ["Kate","Andrew","Micah", "Elizabeth"]
         # I know its ugly to have both a list and a dict... I'll get around to fixing it eventually.
+        self.charactersDict = { "Kate":"She",
+                            "Andrew":"He",
+                            "Micah":"He",
+                            "Elizabeth":"She"
+                           }
+        # I know its ugly to have both a list and a dict... I'll get around to fixing it eventually.
         self.actions = ["Punch","Kick","Yell","Ignor","Us", "Observ", "Star", "Patt", "Cuddl", "Kiss", "Talk", "Fart", "Laugh", "Hat", "Lov"]
         self.actionsDict = { "Punch": "the",
                          "Kick": "the",
@@ -227,9 +233,14 @@ class CrayCrayWriter(object):
             iter = iter - 1
         for character in self.characters:
             list_iter = 0
+            first_occur = True
             for item in paragraph_build:
                 if character in item[:len(character)+1]:
-                    paragraph = paragraph + paragraph_build[list_iter]
+                    if first_occur:
+                        paragraph = paragraph + paragraph_build[list_iter]
+                        first_occur = False
+                    else:
+                        paragraph = paragraph + paragraph_build[list_iter].replace(character, self.charactersDict[character])
                 list_iter = list_iter + 1
         return paragraphIntro + "\n" + paragraph[1:]
 
