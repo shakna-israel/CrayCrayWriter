@@ -6,6 +6,12 @@ Inspired by the many NaNoGenMo projects.
 
 ---
 
+## Example
+
+An example book can be found in [outBook.md](outBook.md)
+
+---
+
 ## Basic Usage
 
 To write a book to file, run the following within Python:
