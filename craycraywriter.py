@@ -13,6 +13,22 @@ class CrayCrayWriter(object):
         # Actions should be a dict pair, of action and noun.
         # There should be two sets of actions: Objects and Characters
         self.actions = ["Punch","Kick","Yell","Ignor","Us", "Observ", "Star", "Patt", "Cuddl", "Kiss", "Talk", "Fart", "Laugh", "Hat", "Lov"]
+        self.actionsDict = { "Punch": "the",
+                         "Kick": "the",
+                         "Yell": "at the",
+                         "Ignor": "the",
+                         "Us": "the",
+                         "Observ": "the",
+                         "Star": "at the",
+                         "Patt": "the",
+                         "Cuddl": "the",
+                         "Kiss": "the",
+                         "Talk": "to the",
+                         "Fart": "at the",
+                         "Laugh":"at the",
+                         "Hat":"the",
+                         "Lov":"the"
+                       }
         self.objects = ["Couch","Chair","TV","Computer","Cat","Dog"]
         self.rooms = ["Bedroom","Library","Bathroom","Kitchen","Lounge","Playroom","Backyard"]
         self.map = dict()
@@ -143,12 +159,12 @@ class CrayCrayWriter(object):
             if len(connected_rooms) > 0:
                 chosen_room = connected_rooms[random.randrange(0, len(connected_rooms))]
                 self.set_character_location(chosen_room, character_focus)
-                return " " + character_focus + " moved to " + chosen_room + "."
+                return " " + character_focus + " moved to the " + chosen_room + "."
             else:
                 if random.randrange(0, 10) > 4:
                     chosen_room = self.rooms[random.randrange(0, len(self.rooms))]
                     self.set_character_location(chosen_room, character_focus)
-                    return " " + character_focus + " teleported to " + chosen_room + "."
+                    return " " + character_focus + " teleported to the " + chosen_room + "."
                 else:
                     return " " + character_focus + " cried because stuck."
         character_object = self.choose_object_from_avail(character_room)
@@ -156,14 +172,14 @@ class CrayCrayWriter(object):
         if character_avail:
             if random.randrange(0, 10) > 4:
                 available_chosen = character_avail
-                noun = "at"
+                noun = self.actionsDict[character_action].replace("the","")
             else:
                 available_chosen = character_object
-                noun = "the"
+                noun = self.actionsDict[character_action] + " "
         else:
             available_chosen = character_object
-            noun = "the"
-        return " " + character_focus + " " + character_action.lower() + "ed " + noun + " " + available_chosen + "."
+            noun = self.actionsDict[character_action] + " "
+        return " " + character_focus + " " + character_action.lower() + "ed " + noun + available_chosen + "."
 
     def choose_character_from_avail(self, room, character):
         characters_present = self.map[room]["characters"]
