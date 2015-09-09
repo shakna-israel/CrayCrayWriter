@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 import random
 import re
+import json
 
 class CrayCrayWriter(object):
     """An object that can generate stories!"""
@@ -263,6 +264,13 @@ class CrayCrayWriter(object):
             openFile.write(self.build_book())
         return "outBook.md"
 
+    def write_map(self):
+        """Write the map JSON to file"""
+
+        with open("map.json", "w+") as openFile:
+            json.dump(self.map, openFile, sort_keys=True, indent=4, separators=(',', ': '))
+        return "map.json"
+
 if __name__ == "__main__":
     insane = CrayCrayWriter()
     insane.decide_map()
@@ -273,3 +281,4 @@ if __name__ == "__main__":
         print("\n\n")
         iter = iter - 1
     insane.write_book()
+    insane.write_map()
