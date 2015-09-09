@@ -213,7 +213,7 @@ class CrayCrayWriter(object):
                 if character in item[:len(character)+1]:
                     paragraph = paragraph + paragraph_build[list_iter]
                 list_iter = list_iter + 1
-        return paragraphIntro + paragraph[1:]
+        return paragraphIntro + "\n" + paragraph[1:]
 
     def build_book(self):
         bookStream = str()
