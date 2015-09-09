@@ -32,3 +32,13 @@ A MarkDown document, ```outBook.md``` will be produced.
 ## License
 
 [MIT License](LICENSE.md)
+
+---
+
+## Notes
+
+As each characters strand is seperated from another, their sentences should be read as if they had each occured at the same time.
+
+For why?
+
+In rare cases more than one character can move rooms, and then interact with each other. This may appear confusing at first.
