@@ -220,7 +220,7 @@ class CrayCrayWriter(object):
             if self.check_character_location(i) == "Character Not Found":
                 character_room = self.choose_room()
                 self.set_character_location(character_room, i)
-        return [x + " is in the " + self.check_character_location(x) + ".\n" for x in list(self.charactersDict)]
+        return [x + " is in the " + self.check_character_location(x) + ".\n\n" for x in list(self.charactersDict)]
 
     def build_paragraph(self):
         """Take some paragraph intros and sentence and bind them together prettily."""
