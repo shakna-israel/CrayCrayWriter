@@ -152,7 +152,6 @@ class CrayCrayWriter(object):
             self.set_character_location(character_room, character_focus)
         else:
             character_room = self.check_character_location(character_focus)
-        # Actions need to happen after object is chosen, so that only appropriate actions are available.
         character_action = self.choose_action()
         if character_action == "move":
             connected_rooms = self.check_room_connected(character_room)
@@ -209,12 +208,14 @@ class CrayCrayWriter(object):
         while iter > 0:
             paragraph_build.append(self.build_sentence())
             iter = iter - 1
-        # For loop per character, per item, examining the first word.
         for character in self.characters:
             list_iter = 0
             for item in paragraph_build:
                 if character in paragraph_build[list_iter]:
-                    paragraph = paragraph + paragraph_build[list_iter]
+                    if list_iter > 0:
+                        pargraph = paragraph + paragraph_build[list_iter].replace(character, "They")
+                    else:
+                        paragraph = paragraph + paragraph_build[list_iter]
                 list_iter = list_iter + 1
         return paragraphIntro + paragraph[1:]
 
