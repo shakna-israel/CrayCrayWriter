@@ -253,7 +253,7 @@ class CrayCrayWriter(object):
         bookStream = str()
         while len(bookStream) < (50000 * 8):
             self.chapters = self.chapters + 1
-            bookStream = bookStream + "Chapter " + str(self.chapters) + ":\n\n" + self.build_paragraph() + "\n\n"
+            bookStream = bookStream + "---\n\n## Chapter " + str(self.chapters) + ":\n\n" + self.build_paragraph() + "\n\n"
         return bookStream
 
     def write_book(self):
