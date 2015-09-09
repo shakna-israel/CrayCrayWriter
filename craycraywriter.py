@@ -237,7 +237,7 @@ class CrayCrayWriter(object):
             for item in paragraph_build:
                 if character in item[:len(character)+1]:
                     if first_occur:
-                        paragraph = paragraph + paragraph_build[list_iter]
+                        paragraph = paragraph + "\n" + paragraph_build[list_iter][1:]
                         first_occur = False
                     else:
                         paragraph = paragraph + paragraph_build[list_iter].replace(character, self.charactersDict[character])
