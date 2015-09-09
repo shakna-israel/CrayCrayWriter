@@ -17,7 +17,7 @@ An example book can be found in [outBook.md](outBook.md)
 To write a book to file, run the following within Python:
 
 ```python
-import CrayCrayWriter
+form craycraywriter import CrayCrayWriter
 
 insane = CrayCrayWriter()
 insane.decide_map()
