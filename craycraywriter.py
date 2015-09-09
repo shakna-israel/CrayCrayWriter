@@ -204,10 +204,18 @@ class CrayCrayWriter(object):
         for item in self.write_character_locations():
             paragraphIntro = paragraphIntro + item
         paragraph = str()
+        paragraph_build = list()
         iter = 20
         while iter > 0:
-            paragraph = paragraph + self.build_sentence()
+            paragraph_build.append(self.build_sentence())
             iter = iter - 1
+        # For loop per character, per item, examining the first word.
+        for character in self.characters:
+            list_iter = 0
+            for item in paragraph_build:
+                if character in paragraph_build[list_iter]:
+                    paragraph = paragraph + paragraph_build[list_iter]
+                list_iter = list_iter + 1
         return paragraphIntro + paragraph[1:]
 
     def build_book(self):
@@ -225,7 +233,7 @@ if __name__ == "__main__":
     insane = CrayCrayWriter()
     insane.decide_map()
     insane.decide_room_objects()
-    iter = 1
+    iter = 10
     while iter > 0:
         print(insane.build_paragraph())
         print("\n\n")
