@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import random
+import re
 
 class CrayCrayWriter(object):
     """An object that can generate stories!"""
@@ -211,11 +212,8 @@ class CrayCrayWriter(object):
         for character in self.characters:
             list_iter = 0
             for item in paragraph_build:
-                if character in paragraph_build[list_iter]:
-                    if list_iter > 0:
-                        pargraph = paragraph + paragraph_build[list_iter].replace(character, "They")
-                    else:
-                        paragraph = paragraph + paragraph_build[list_iter]
+                if character in item[:len(character)+1]:
+                    paragraph = paragraph + paragraph_build[list_iter]
                 list_iter = list_iter + 1
         return paragraphIntro + paragraph[1:]
 
