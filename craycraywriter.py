@@ -11,8 +11,6 @@ class CrayCrayWriter(object):
         """Init all the data we need"""
 
         self.characters = ["Kate","Andrew","Micah", "Elizabeth"]
-        # Actions should be a dict pair, of action and noun.
-        # There should be two sets of actions: Objects and Characters
         self.actions = ["Punch","Kick","Yell","Ignor","Us", "Observ", "Star", "Patt", "Cuddl", "Kiss", "Talk", "Fart", "Laugh", "Hat", "Lov"]
         self.actionsDict = { "Punch": "the",
                          "Kick": "the",
