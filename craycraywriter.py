@@ -10,15 +10,11 @@ class CrayCrayWriter(object):
     def __init__(self):
         """Init all the data we need"""
 
-        self.characters = ["Kate","Andrew","Micah", "Elizabeth"]
-        # I know its ugly to have both a list and a dict... I'll get around to fixing it eventually.
         self.charactersDict = { "Kate":"She",
                             "Andrew":"He",
                             "Micah":"He",
                             "Elizabeth":"She"
                            }
-        # I know its ugly to have both a list and a dict... I'll get around to fixing it eventually.
-        self.actions = ["Punch","Kick","Yell","Ignor","Us", "Observ", "Star", "Patt", "Cuddl", "Kiss", "Talk", "Fart", "Laugh", "Hat", "Lov"]
         self.actionsDict = { "Punch": "the",
                          "Kick": "the",
                          "Yell": "at the",
@@ -35,20 +31,20 @@ class CrayCrayWriter(object):
                          "Hat":"the",
                          "Lov":"the"
                        }
-        self.objects = ["Couch","Chair","TV","Computer","Cat","Dog"]
-        self.rooms = ["Bedroom","Library","Bathroom","Kitchen","Lounge","Playroom","Backyard"]
+        self.objects = ["Couch","Chair","TV","Computer","Cat","Dog","Table","Keyboard","Mouse","Mug","Glass","Speaker","Deoderant","Biscuit","Pizza","Fire Blanket","Walking Cane","Cane Sugar","Fire"]
+        self.rooms = ["Bedroom","Library","Bathroom","Kitchen","Lounge","Playroom","Backyard","Laboratory","Maze","Torture Chamber","Mirror","Dreamworld","Digital Realm"]
         # self.map becomes a list of connections between rooms later on.
         self.map = dict()
 
     def choose_character(self):
         """Randomly return one of the available characters"""
 
-        return self.characters[random.randrange(0, len(self.characters))]
+        return list(self.charactersDict)[random.randrange(0, len(self.charactersDict))]
 
     def choose_action(self):
         """Randomly return one of the possible actions"""
 
-        return self.actions[random.randrange(0, len(self.actions))]
+        return self.actionsDict[random.randrange(0, len(self.actionsDict))]
 
     def choose_object(self):
         """Randomly return one of the possible objects"""
@@ -142,9 +138,8 @@ class CrayCrayWriter(object):
     def choose_action(self):
         """Randomly choose an action to do"""
 
-        self.actions.append("move")
-        self.actions = list(set(self.actions))
-        return self.actions[random.randrange(0, len(self.actions))]
+        self.actionsDict["move"] = "move"
+        return list(self.actionsDict)[random.randrange(0, len(self.actionsDict))]
 
     def choose_object_from_avail(self, room):
         """Randomly choose object from those available in the room"""
@@ -213,11 +208,11 @@ class CrayCrayWriter(object):
     def write_character_locations(self):
         """A nice paragraph intro that says where everyone is."""
 
-        for i in self.characters:
+        for i in self.charactersDict:
             if self.check_character_location(i) == "Character Not Found":
                 character_room = self.choose_room()
                 self.set_character_location(character_room, i)
-        return [x + " is in the " + self.check_character_location(x) + ".\n" for x in self.characters]
+        return [x + " is in the " + self.check_character_location(x) + ".\n" for x in list(self.charactersDict)]
 
     def build_paragraph(self):
         """Take some paragraph intros and sentence and bind them together prettily."""
@@ -231,7 +226,7 @@ class CrayCrayWriter(object):
         while iter > 0:
             paragraph_build.append(self.build_sentence())
             iter = iter - 1
-        for character in self.characters:
+        for character in self.charactersDict:
             list_iter = 0
             first_occur = True
             for item in paragraph_build:
