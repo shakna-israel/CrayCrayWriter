@@ -11,6 +11,7 @@ class CrayCrayWriter(object):
         """Init all the data we need"""
 
         self.characters = ["Kate","Andrew","Micah", "Elizabeth"]
+        # I know its ugly to have both a list and a dict... I'll get around to fixing it eventually.
         self.actions = ["Punch","Kick","Yell","Ignor","Us", "Observ", "Star", "Patt", "Cuddl", "Kiss", "Talk", "Fart", "Laugh", "Hat", "Lov"]
         self.actionsDict = { "Punch": "the",
                          "Kick": "the",
@@ -30,6 +31,7 @@ class CrayCrayWriter(object):
                        }
         self.objects = ["Couch","Chair","TV","Computer","Cat","Dog"]
         self.rooms = ["Bedroom","Library","Bathroom","Kitchen","Lounge","Playroom","Backyard"]
+        # self.map becomes a list of connections between rooms later on.
         self.map = dict()
 
     def choose_character(self):
@@ -128,6 +130,7 @@ class CrayCrayWriter(object):
         for room in self.map:
             if character in self.map[room]["characters"]:
                 return room
+        # We use this return value to check if we need to assign a room to a character.
         return "Character Not Found"
 
     def choose_action(self):
@@ -145,13 +148,17 @@ class CrayCrayWriter(object):
 
     def build_sentence(self):
         """Generate a sentence from available data"""
+        # We choose what character we're going to write a sentence for.
         character_focus = self.choose_character()
+        # We check if that character has a location yet, if not, give them one.
         if self.check_character_location(character_focus) == "Character Not Found":
             character_room = self.choose_room()
             self.set_character_location(character_room, character_focus)
         else:
             character_room = self.check_character_location(character_focus)
+        # We check what action the character is going to take.
         character_action = self.choose_action()
+        # If the character is moving, make sure they actually move.
         if character_action == "move":
             connected_rooms = self.check_room_connected(character_room)
             if len(connected_rooms) > 0:
@@ -159,14 +166,18 @@ class CrayCrayWriter(object):
                 self.set_character_location(chosen_room, character_focus)
                 return " " + character_focus + " moved to the " + chosen_room + "."
             else:
+                # If there's no connecting room, we random chance either teleporting or staying and crying.
                 if random.randrange(0, 10) > 4:
                     chosen_room = self.rooms[random.randrange(0, len(self.rooms))]
                     self.set_character_location(chosen_room, character_focus)
                     return " " + character_focus + " teleported to the " + chosen_room + "."
                 else:
-                    return " " + character_focus + " cried because stuck."
+                    return " " + character_focus + " cried because they were stuck."
+        # If the character didn't move, we choose an object they will interact with.
         character_object = self.choose_object_from_avail(character_room)
+        # We check if anybody else is in the room.
         character_avail = self.choose_character_from_avail(character_room, character_focus)
+        # Set the noun based on whether they interact with a person or an object.
         if character_avail:
             if random.randrange(0, 10) > 4:
                 available_chosen = character_avail
@@ -177,9 +188,12 @@ class CrayCrayWriter(object):
         else:
             available_chosen = character_object
             noun = self.actionsDict[character_action] + " "
+        # We return a nicely built sentence.
         return " " + character_focus + " " + character_action.lower() + "ed " + noun + available_chosen + "."
 
     def choose_character_from_avail(self, room, character):
+        """Return a random character who is also in the room."""
+
         characters_present = self.map[room]["characters"]
         available_list = list()
         for item in characters_present:
@@ -191,6 +205,8 @@ class CrayCrayWriter(object):
             return False
 
     def write_character_locations(self):
+        """A nice paragraph intro that says where everyone is."""
+
         for i in self.characters:
             if self.check_character_location(i) == "Character Not Found":
                 character_room = self.choose_room()
@@ -198,6 +214,8 @@ class CrayCrayWriter(object):
         return [x + " is in the " + self.check_character_location(x) + ".\n" for x in self.characters]
 
     def build_paragraph(self):
+        """Take some paragraph intros and sentence and bind them together prettily."""
+
         paragraphIntro = str()
         for item in self.write_character_locations():
             paragraphIntro = paragraphIntro + item
@@ -216,12 +234,16 @@ class CrayCrayWriter(object):
         return paragraphIntro + "\n" + paragraph[1:]
 
     def build_book(self):
+        """Bind a bunch of paragraphs together with a rough estimate, to make a 50,000 word book"""
+
         bookStream = str()
         while len(bookStream) < (50000 * 8):
             bookStream = bookStream + self.build_paragraph() + "\n\n"
         return bookStream
 
     def write_book(self):
+        """Write a whole 50,000 word book to file."""
+
         with open("outBook.md", "w+") as openFile:
             openFile.write(self.build_book())
         return "outBook.md"
