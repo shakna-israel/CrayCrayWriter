@@ -29,12 +29,20 @@ class CrayCrayWriter(object):
                          "Fart": "at the",
                          "Laugh":"at the",
                          "Hat":"the",
-                         "Lov":"the"
+                         "Lov":"the",
+                         "Sneer":"at the",
+                         "Jeer":"at the",
+                         "Cheer":"the",
+                         "Cri":"because of the",
+                         "Strok":"the",
+                         "Lick":"the",
                        }
-        self.objects = ["Couch","Chair","TV","Computer","Cat","Dog","Table","Keyboard","Mouse","Mug","Glass","Speaker","Deoderant","Biscuit","Pizza","Fire Blanket","Walking Cane","Cane Sugar","Fire"]
+        self.objects = ["Couch","Chair","TV","Computer","Cat","Dog","Table","Keyboard","Mouse","Mug","Glass","Speaker","Deoderant","Biscuit","Pizza","Fire Blanket","Walking Cane","Cane Sugar","Fire","Mummy","Ghost","Vampire","Zombie","Stone","Boulder","Axe","Reindeer","Elf","Spear","Pestle","Clay","Toy","Pot","Saucepan","Shower head","Envelope","Coat of arms","Tablet","Maths Text Book", "English Text Book","Cape","Dressing Gown","Vessel","Ship","Bell","Coin","Wallet","Purse","Pipe","Scroll","Plate","Fork","Knife","Staff","Sword","Helmet","Shield","Roof tile","Painting","Crystal","Tomb","Vase","Flower","Seat","Sculpture","Galleon","Elephant","Kangaroo","Prince","Codex","Drum","Poem","Compass","Penny","Village","Weapon","Lamp"]
         self.rooms = ["Bedroom","Library","Bathroom","Kitchen","Lounge","Playroom","Backyard","Laboratory","Maze","Torture Chamber","Mirror","Dreamworld","Digital Realm"]
         # self.map becomes a list of connections between rooms later on.
         self.map = dict()
+        # A tracker for the current chapter
+        self.chapters = 0
 
     def choose_character(self):
         """Randomly return one of the available characters"""
@@ -49,7 +57,7 @@ class CrayCrayWriter(object):
     def choose_object(self):
         """Randomly return one of the possible objects"""
 
-        return self.objects[random.randrange(0, len(self.objects))]
+        return self.objects[random.randrange(0, len(self.objects))].lower()
 
     def choose_room(self):
         """Randomly return one of the possible rooms"""
@@ -232,7 +240,7 @@ class CrayCrayWriter(object):
             for item in paragraph_build:
                 if character in item[:len(character)+1]:
                     if first_occur:
-                        paragraph = paragraph + "\n" + paragraph_build[list_iter][1:]
+                        paragraph = paragraph + "\n\n---\n\n" + paragraph_build[list_iter][1:]
                         first_occur = False
                     else:
                         paragraph = paragraph + paragraph_build[list_iter].replace(character, self.charactersDict[character])
@@ -244,7 +252,8 @@ class CrayCrayWriter(object):
 
         bookStream = str()
         while len(bookStream) < (50000 * 8):
-            bookStream = bookStream + self.build_paragraph() + "\n\n"
+            self.chapters = self.chapters + 1
+            bookStream = bookStream + "Chapter " + str(self.chapters) + ":\n\n" + self.build_paragraph() + "\n\n"
         return bookStream
 
     def write_book(self):
@@ -263,3 +272,4 @@ if __name__ == "__main__":
         print(insane.build_paragraph())
         print("\n\n")
         iter = iter - 1
+    insane.write_book()
