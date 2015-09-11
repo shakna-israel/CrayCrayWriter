@@ -133,7 +133,7 @@ class CrayCrayWriter(object):
         for room in self.map:
             iter = len(self.rooms) - 1
             while iter > 0:
-                object_list_length = random.randrange(0, 10)
+                object_list_length = random.randrange(0, 5)
                 if object_list_length > 0:
                     randObj = self.choose_object()
                     self.map[room]["objects"].append(randObj)
@@ -197,7 +197,7 @@ class CrayCrayWriter(object):
         for item in available_objects:
             if action not in self.objectsDict[item]:
                 final_list.append(item)
-        if len(final_list) > 1:
+        if len(final_list) < 1:
             final_list.append("Door")
         return final_list[random.randrange(0, len(final_list))]
 
@@ -241,10 +241,10 @@ class CrayCrayWriter(object):
                 if character_action == "Us":
                     character_action = "Ignor"
             else:
-                available_chosen = character_object
+                available_chosen = character_object.lower()
                 noun = self.actionsDict[character_action] + " "
         else:
-            available_chosen = character_object
+            available_chosen = character_object.lower()
             noun = self.actionsDict[character_action] + " "
         # We return a nicely built sentence.
         return " " + character_focus + " " + character_action.lower() + "ed " + noun + available_chosen + "."
