@@ -43,6 +43,7 @@ class CrayCrayWriter(object):
         
         # Objects are a dictionary of the object, 
         # and a list of actions that are NOT allowed
+        # Door is required to be in this list!
         self.objectsDict = {"Door":["Ignor","Cri","Cheer","Lov","Hat","Laugh","Fart","Kiss","Cuddl","Patt","Us"],
                             "Couch": ["Ignor"],
                             "Chair": ["Ignor"],
