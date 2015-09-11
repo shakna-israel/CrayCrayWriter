@@ -195,6 +195,8 @@ class CrayCrayWriter(object):
         for item in available_objects:
             if action not in self.objectsDict[item]:
                 final_list.append(item)
+        if len(final_list) > 1:
+            final_list.append("Door")
         return final_list[random.randrange(0, len(final_list))]
 
     def build_sentence(self):
