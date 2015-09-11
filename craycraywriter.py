@@ -43,37 +43,37 @@ class CrayCrayWriter(object):
         
         # Objects are a dictionary of the object, 
         # and a list of actions that are NOT allowed
-        self.objectsDict = {"Door":[],
-                            "Couch": [],
-                            "Chair": [],
+        self.objectsDict = {"Door":["Ignor","Cri","Cheer","Lov","Hat","Laugh","Fart","Kiss","Cuddl","Patt","Us"],
+                            "Couch": ["Ignor"],
+                            "Chair": ["Ignor"],
                             "TV": [],
                             "Computer":[],
                             "Cat":["Us"],
                             "Dog":["Us"],
-                            "Table":[],
-                            "Keyboard":[],
+                            "Table":["Ignor"],
+                            "Keyboard":["Ignor"],
                             "Mouse":[],
-                            "Mug":[],
-                            "Glass":[],
+                            "Mug":["Ignor"],
+                            "Glass":["Ignor"],
                             "Speaker":[],
-                            "Deoderant":[],
-                            "Biscuit":[],
-                            "Pizza":[],
-                            "Fire Blanket":[],
-                            "Walking Cane":[],
-                            "Cane Sugar":[],
+                            "Deoderant":["Ignor"],
+                            "Biscuit":["Ignor"],
+                            "Pizza":["Ignor"],
+                            "Fire Blanket":["Ignor"],
+                            "Walking Cane":["Ignor"],
+                            "Cane Sugar":["Ignor"],
                             "Fire":[],
                             "Rotting Mummy":["Us"],
                             "Ghost":["Us"],
                             "Vampire":["Us"],
                             "Zombie":["Us"],
-                            "Stone":[],
-                            "Boulder":[],
-                            "Axe":[],
+                            "Stone":["Ignor"],
+                            "Boulder":["Ignor"],
+                            "Axe":["Ignor"],
                             "Reindeer":["Us"],
                             "Elf":["Us"],
-                            "Spear":[],
-                            "Pestle":[]
+                            "Spear":["Ignor"],
+                            "Pestle":["Ignor"]
                            }
 
         self.rooms = ["Bedroom","Library","Bathroom","Kitchen","Lounge","Playroom","Backyard","Laboratory","Maze","Torture Chamber","Mirror","Dreamworld","Digital Realm"]
@@ -133,9 +133,11 @@ class CrayCrayWriter(object):
         for room in self.map:
             iter = len(self.rooms) - 1
             while iter > 0:
-                if random.randrange(0, 2) > 0:
+                object_list_length = random.randrange(0, 10)
+                if object_list_length > 0:
                     randObj = self.choose_object()
                     self.map[room]["objects"].append(randObj)
+                    object_list_length = object_list_length - 1
                 iter = iter - 1
         for room in self.map:
             self.map[room]["objects"] = list(set(self.map[room]["objects"]))
@@ -235,6 +237,9 @@ class CrayCrayWriter(object):
             if random.randrange(0, 10) > 4:
                 available_chosen = character_avail
                 noun = self.actionsDict[character_action].replace("the","")
+                # We don't allow rape by misuse of language
+                if character_action == "Us":
+                    character_action = "Ignor"
             else:
                 available_chosen = character_object
                 noun = self.actionsDict[character_action] + " "
@@ -318,7 +323,7 @@ if __name__ == "__main__":
     insane = CrayCrayWriter()
     insane.decide_map()
     insane.decide_room_objects()
-    iter = 1
+    iter = 10
     while iter > 0:
         print(insane.build_paragraph())
         print("\n\n")
