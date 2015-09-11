@@ -1,243 +1,260 @@
 {
     "Backyard": {
-        "characters": [
-            "Kate"
-        ],
+        "characters": [],
         "connected": [
-            "Bathroom",
-            "Playroom",
+            "Dreamworld",
+            "Lounge",
+            "Bedroom",
+            "Laboratory",
             "Digital Realm",
-            "Library",
-            "Mirror"
+            "Kitchen"
         ],
         "objects": [
-            "boulder",
-            "deoderant",
-            "walking cane",
-            "biscuit",
-            "cane sugar",
-            "keyboard",
-            "Door"
+            "Boulder",
+            "Door",
+            "Rotting Mummy",
+            "Zombie",
+            "Fire Blanket",
+            "Table",
+            "Chair"
         ]
     },
     "Bathroom": {
         "characters": [],
         "connected": [
-            "Dreamworld",
-            "Bathroom",
+            "Maze",
             "Playroom",
             "Digital Realm",
             "Mirror"
         ],
         "objects": [
-            "deoderant",
-            "stone",
             "Door",
-            "fire",
-            "couch",
-            "computer",
-            "chair"
+            "TV",
+            "Fire",
+            "Dog",
+            "Glass",
+            "Reindeer"
         ]
     },
     "Bedroom": {
-        "characters": [
-            "Micah"
-        ],
+        "characters": [],
         "connected": [
-            "Maze",
-            "Playroom",
-            "Backyard",
-            "Library",
-            "Bedroom"
+            "Mirror",
+            "Kitchen"
         ],
         "objects": [
             "Door",
-            "tv",
-            "vampire",
-            "cat",
-            "zombie",
-            "glass",
-            "axe"
+            "Spear",
+            "TV",
+            "Axe",
+            "Zombie",
+            "Keyboard"
         ]
     },
     "Digital Realm": {
         "characters": [],
         "connected": [
-            "Maze",
-            "Laboratory",
-            "Playroom",
-            "Backyard"
-        ],
-        "objects": [
-            "boulder",
-            "ghost",
-            "walking cane",
-            "spear",
-            "tv",
-            "computer",
-            "keyboard",
-            "Door"
-        ]
-    },
-    "Dreamworld": {
-        "characters": [],
-        "connected": [
-            "Torture Chamber",
-            "Lounge",
-            "Bathroom",
-            "Digital Realm",
-            "Bedroom"
-        ],
-        "objects": [
-            "Door",
-            "vampire",
-            "rotting mummy",
-            "reindeer",
-            "cane sugar",
-            "mouse"
-        ]
-    },
-    "Kitchen": {
-        "characters": [],
-        "connected": [
-            "Dreamworld",
+            "Backyard",
             "Laboratory",
             "Digital Realm",
-            "Kitchen"
-        ],
-        "objects": [
-            "Door",
-            "tv",
-            "vampire",
-            "cat",
-            "zombie",
-            "reindeer",
-            "axe"
-        ]
-    },
-    "Laboratory": {
-        "characters": [],
-        "connected": [
-            "Laboratory",
-            "Dreamworld",
-            "Playroom",
-            "Lounge",
+            "Library",
             "Mirror"
         ],
         "objects": [
-            "ghost",
+            "Glass",
+            "Pizza",
             "Door",
-            "dog",
-            "vampire",
-            "cat",
-            "zombie",
-            "computer",
-            "speaker",
-            "keyboard"
+            "Dog",
+            "Axe"
+        ]
+    },
+    "Dreamworld": {
+        "characters": [
+            "Kate"
+        ],
+        "connected": [
+            "Torture Chamber",
+            "Laboratory",
+            "Dreamworld",
+            "Digital Realm",
+            "Mirror"
+        ],
+        "objects": [
+            "Ghost",
+            "Door",
+            "Elf",
+            "Dog",
+            "Couch",
+            "Speaker",
+            "Fire Blanket",
+            "Pestle",
+            "Pizza"
+        ]
+    },
+    "Kitchen": {
+        "characters": [
+            "Elizabeth"
+        ],
+        "connected": [
+            "Lounge",
+            "Torture Chamber",
+            "Playroom",
+            "Mirror"
+        ],
+        "objects": [
+            "Walking Cane",
+            "Biscuit",
+            "Vampire",
+            "Rotting Mummy",
+            "Speaker",
+            "Keyboard",
+            "Door",
+            "Dog",
+            "Mouse"
+        ]
+    },
+    "Laboratory": {
+        "characters": [
+            "Micah"
+        ],
+        "connected": [
+            "Dreamworld",
+            "Bathroom",
+            "Library",
+            "Backyard",
+            "Maze",
+            "Laboratory"
+        ],
+        "objects": [
+            "Boulder",
+            "Ghost",
+            "Door",
+            "Zombie",
+            "Speaker",
+            "Walking Cane"
         ]
     },
     "Library": {
         "characters": [],
         "connected": [
-            "Bathroom",
+            "Playroom",
+            "Library",
+            "Lounge",
+            "Backyard",
+            "Maze",
             "Digital Realm",
             "Kitchen"
         ],
         "objects": [
-            "glass",
+            "Ghost",
+            "Stone",
             "Door",
-            "spear",
-            "elf"
+            "Spear",
+            "Dog",
+            "Fire Blanket",
+            "Table",
+            "Mouse"
         ]
     },
     "Lounge": {
         "characters": [],
         "connected": [
-            "Dreamworld",
-            "Bathroom",
-            "Playroom",
+            "Lounge",
             "Bedroom",
-            "Torture Chamber",
+            "Library",
             "Mirror",
-            "Backyard"
+            "Torture Chamber",
+            "Maze",
+            "Laboratory"
         ],
         "objects": [
-            "deoderant",
+            "Boulder",
             "Door",
-            "biscuit",
-            "elf",
-            "walking cane",
-            "chair",
-            "mouse",
-            "pizza"
+            "TV",
+            "Biscuit",
+            "Elf",
+            "Cat",
+            "Speaker"
         ]
     },
     "Maze": {
         "characters": [],
         "connected": [
-            "Kitchen"
+            "Dreamworld",
+            "Bathroom",
+            "Library",
+            "Maze",
+            "Backyard",
+            "Digital Realm"
         ],
         "objects": [
-            "deoderant",
             "Door",
-            "tv",
-            "biscuit",
-            "couch",
-            "fire blanket",
-            "pestle"
+            "Elf",
+            "Dog",
+            "Cat",
+            "Zombie",
+            "Reindeer"
         ]
     },
     "Mirror": {
         "characters": [],
         "connected": [
-            "Backyard",
-            "Playroom"
+            "Maze",
+            "Laboratory",
+            "Playroom",
+            "Mirror",
+            "Bedroom"
         ],
         "objects": [
-            "boulder",
+            "Ghost",
+            "Walking Cane",
+            "Cane Sugar",
+            "Speaker",
             "Door",
-            "spear",
-            "vampire",
-            "cat",
-            "glass",
-            "mug",
-            "cane sugar"
+            "Rotting Mummy"
         ]
     },
     "Playroom": {
         "characters": [
-            "Andrew",
-            "Elizabeth"
+            "Andrew"
         ],
         "connected": [
-            "Lounge",
+            "Torture Chamber",
+            "Bedroom",
             "Bathroom",
-            "Digital Realm"
+            "Playroom",
+            "Kitchen"
         ],
         "objects": [
-            "mouse",
-            "chair",
-            "couch",
+            "Walking Cane",
+            "Spear",
+            "Vampire",
+            "Rotting Mummy",
+            "Axe",
             "Door",
-            "rotting mummy"
+            "Mouse"
         ]
     },
     "Torture Chamber": {
         "characters": [],
         "connected": [
-            "Lounge",
-            "Playroom",
+            "Dreamworld",
+            "Digital Realm",
             "Library",
-            "Bedroom"
+            "Lounge",
+            "Bedroom",
+            "Maze",
+            "Torture Chamber",
+            "Kitchen"
         ],
         "objects": [
-            "stone",
-            "walking cane",
-            "fire",
-            "elf",
-            "zombie",
-            "keyboard",
-            "Door"
+            "Boulder",
+            "Deoderant",
+            "Stone",
+            "Walking Cane",
+            "Couch",
+            "Door",
+            "Pizza"
         ]
     }
 }

@@ -43,12 +43,13 @@ class CrayCrayWriter(object):
         
         # Objects are a dictionary of the object, 
         # and a list of actions that are NOT allowed
-        self.objectsDict = {"Couch": [],
+        self.objectsDict = {"Door":[],
+                            "Couch": [],
                             "Chair": [],
                             "TV": [],
                             "Computer":[],
-                            "Cat":[],
-                            "Dog":[],
+                            "Cat":["Us"],
+                            "Dog":["Us"],
                             "Table":[],
                             "Keyboard":[],
                             "Mouse":[],
@@ -62,15 +63,15 @@ class CrayCrayWriter(object):
                             "Walking Cane":[],
                             "Cane Sugar":[],
                             "Fire":[],
-                            "Rotting Mummy":[],
-                            "Ghost":[],
-                            "Vampire":[],
-                            "Zombie":[],
+                            "Rotting Mummy":["Us"],
+                            "Ghost":["Us"],
+                            "Vampire":["Us"],
+                            "Zombie":["Us"],
                             "Stone":[],
                             "Boulder":[],
                             "Axe":[],
-                            "Reindeer":[],
-                            "Elf":[],
+                            "Reindeer":["Us"],
+                            "Elf":["Us"],
                             "Spear":[],
                             "Pestle":[]
                            }
@@ -94,7 +95,7 @@ class CrayCrayWriter(object):
     def choose_object(self):
         """Randomly return one of the possible objects"""
 
-        return list(self.objectsDict)[random.randrange(0, len(self.objectsDict))].lower()
+        return list(self.objectsDict)[random.randrange(0, len(self.objectsDict))]
 
     def choose_room(self):
         """Randomly return one of the possible rooms"""
@@ -186,11 +187,15 @@ class CrayCrayWriter(object):
         self.actionsDict["move"] = "move"
         return list(self.actionsDict)[random.randrange(0, len(self.actionsDict))]
 
-    def choose_object_from_avail(self, room):
+    def choose_object_from_avail(self, room, action):
         """Randomly choose object from those available in the room"""
 
         available_objects = self.check_room_objects(room)
-        return available_objects[random.randrange(0, len(available_objects))]
+        final_list = list()
+        for item in available_objects:
+            if action not in self.objectsDict[item]:
+                final_list.append(item)
+        return final_list[random.randrange(0, len(final_list))]
 
     def build_sentence(self):
         """Generate a sentence from available data"""
@@ -220,7 +225,7 @@ class CrayCrayWriter(object):
                 else:
                     return " " + character_focus + " cried because they were stuck."
         # If the character didn't move, we choose an object they will interact with.
-        character_object = self.choose_object_from_avail(character_room)
+        character_object = self.choose_object_from_avail(character_room, character_action)
         # We check if anybody else is in the room.
         character_avail = self.choose_character_from_avail(character_room, character_focus)
         # Set the noun based on whether they interact with a person or an object.
@@ -311,7 +316,7 @@ if __name__ == "__main__":
     insane = CrayCrayWriter()
     insane.decide_map()
     insane.decide_room_objects()
-    iter = 10
+    iter = 1
     while iter > 0:
         print(insane.build_paragraph())
         print("\n\n")
