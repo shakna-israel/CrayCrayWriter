@@ -11,11 +11,13 @@ class CrayCrayWriter(object):
     def __init__(self):
         """Init all the data we need"""
 
+        # Characters are a dictionary of name, and pronoun
         self.charactersDict = { "Kate":"She",
                             "Andrew":"He",
                             "Micah":"He",
                             "Elizabeth":"She"
                            }
+        # Actions are a dictionary of action, and definitive article
         self.actionsDict = { "Punch": "the",
                          "Kick": "the",
                          "Yell": "at the",
@@ -38,7 +40,41 @@ class CrayCrayWriter(object):
                          "Strok":"the",
                          "Lick":"the",
                        }
-        self.objects = ["Couch","Chair","TV","Computer","Cat","Dog","Table","Keyboard","Mouse","Mug","Glass","Speaker","Deoderant","Biscuit","Pizza","Fire Blanket","Walking Cane","Cane Sugar","Fire","Mummy","Ghost","Vampire","Zombie","Stone","Boulder","Axe","Reindeer","Elf","Spear","Pestle","Clay","Toy","Pot","Saucepan","Shower head","Envelope","Coat of arms","Tablet","Maths Text Book", "English Text Book","Cape","Dressing Gown","Vessel","Ship","Bell","Coin","Wallet","Purse","Pipe","Scroll","Plate","Fork","Knife","Staff","Sword","Helmet","Shield","Roof tile","Painting","Crystal","Tomb","Vase","Flower","Seat","Sculpture","Galleon","Elephant","Kangaroo","Prince","Codex","Drum","Poem","Compass","Penny","Village","Weapon","Lamp"]
+        
+        # Objects are a dictionary of the object, 
+        # and a list of actions that are NOT allowed
+        self.objectsDict = {"Couch": [],
+                            "Chair": [],
+                            "TV": [],
+                            "Computer":[],
+                            "Cat":[],
+                            "Dog":[],
+                            "Table":[],
+                            "Keyboard":[],
+                            "Mouse":[],
+                            "Mug":[],
+                            "Glass":[],
+                            "Speaker":[],
+                            "Deoderant":[],
+                            "Biscuit":[],
+                            "Pizza":[],
+                            "Fire Blanket":[],
+                            "Walking Cane":[],
+                            "Cane Sugar":[],
+                            "Fire":[],
+                            "Rotting Mummy":[],
+                            "Ghost":[],
+                            "Vampire":[],
+                            "Zombie":[],
+                            "Stone":[],
+                            "Boulder":[],
+                            "Axe":[],
+                            "Reindeer":[],
+                            "Elf":[],
+                            "Spear":[],
+                            "Pestle":[]
+                           }
+
         self.rooms = ["Bedroom","Library","Bathroom","Kitchen","Lounge","Playroom","Backyard","Laboratory","Maze","Torture Chamber","Mirror","Dreamworld","Digital Realm"]
         # self.map becomes a list of connections between rooms later on.
         self.map = dict()
@@ -58,7 +94,7 @@ class CrayCrayWriter(object):
     def choose_object(self):
         """Randomly return one of the possible objects"""
 
-        return self.objects[random.randrange(0, len(self.objects))].lower()
+        return list(self.objectsDict)[random.randrange(0, len(self.objectsDict))].lower()
 
     def choose_room(self):
         """Randomly return one of the possible rooms"""
