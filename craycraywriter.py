@@ -202,6 +202,33 @@ class CrayCrayWriter(object):
             final_list.append("Door")
         return final_list[random.randrange(0, len(final_list))]
 
+    def destroy_character(self, character):
+        def map_destroy(character):
+            newmap = dict()
+            for room in self.map:
+                newmap[room] = dict()
+                newmap[room]["connected"] = self.map[room]["connected"]
+                newmap[room]["objects"] = self.map[room]["objects"]
+                if character in self.map[room]["characters"]:
+                    newlist = list()
+                    for item in self.map[room]["characters"]:
+                        if item != character:
+                            newlist.append(item)
+                    newmap[room]["characters"] = newlist
+                else:
+                    newmap[room]["characters"] = self.map[room]["characters"]
+            self.map = newmap
+            return self.map
+
+        def list_destroy(character):
+            newlist = dict()
+            for char in self.charactersDict:
+                if char != character:
+                    newlist[char] = self.charactersDict[char]
+            self.charactersDict = newlist
+
+        return (map_destroy(character), list_destroy(character))
+
     def build_sentence(self):
         """Generate a sentence from available data"""
         # We choose what character we're going to write a sentence for.
