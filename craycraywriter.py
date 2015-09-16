@@ -202,7 +202,30 @@ class CrayCrayWriter(object):
             final_list.append("Door")
         return final_list[random.randrange(0, len(final_list))]
 
+    def destroy_room(self, room):
+        """Remove a room, and all its contents, from existence."""
+        def map_destroy(room):
+            newmap = dict()
+            for item in self.map:
+                if item != room:
+                    newmap[item] = dict()
+                    newmap[item] = self.map[item]
+                else:
+                    for char in self.map[room]["characters"]:
+                        self.destroy_character(char)
+            self.map = newmap
+            return self.map
+        def list_destroy(room):
+            newlist = list()
+            for item in self.rooms:
+                if item != room:
+                   newlist.append(item)
+            self.rooms = newlist
+            return self.rooms
+        return (map_destroy(room),list_destroy(room))
+
     def destroy_character(self, character):
+        """Remove a character from existence."""
         def map_destroy(character):
             newmap = dict()
             for room in self.map:
